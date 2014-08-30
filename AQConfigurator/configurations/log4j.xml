@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--                                             -->
+<!-- Entities used and modified by the tli-core. -->
+<!-- Do not modify the following entities:       -->
+<!--                                             -->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" [
+        <!ENTITY console.log.level "info">
+        ]>
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="DebugLogger" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/debug.log"/>
+        <param name="Append" value="true"/>
+        <param name="MaxFileSize" value="2MB"/>
+        <param name="MaxBackupIndex" value="4"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+            <param name="LevelMax" value="DEBUG"/>
+        </filter>
+    </appender>
+
+    <appender name="InfoLogger" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/info.log"/>
+        <param name="Append" value="true"/>
+        <param name="MaxFileSize" value="2MB"/>
+        <param name="MaxBackupIndex" value="4"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+            <param name="LevelMax" value="DEBUG"/>
+        </filter>
+    </appender>
+
+    <appender name="ErrorLogger" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/error.log"/>
+        <param name="Append" value="true"/>
+        <param name="MaxFileSize" value="2MB"/>
+        <param name="MaxBackupIndex" value="4"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="WARN"/>
+            <param name="LevelMax" value="FATAL"/>
+        </filter>
+    </appender>
+
+    <root>
+        <priority value="&console.log.level;"/>
+        <appender-ref ref="Console"/>
+        <appender-ref ref="ErrorLogger"/>
+        <appender-ref ref="InfoLogger"/>
+        <appender-ref ref="DebugLogger"/>
+    </root>
+</log4j:configuration>
